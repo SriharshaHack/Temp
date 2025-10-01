@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Azure AI Chat</h1>
+            <button id="settingsBtn" class="settings-btn">⚙️ Settings</button>
+        </header>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <h2>API Configuration</h2>
+                <div class="form-group">
+                    <label for="apiKey">Azure AI Foundry API Key:</label>
+                    <input type="password" id="apiKey" placeholder="Enter your API key">
+                </div>
+                <div class="form-group">
+                    <label for="endpoint">Azure Endpoint URL:</label>
+                    <input type="text" id="endpoint" placeholder="https://your-endpoint.openai.azure.com">
+                </div>
+                <div class="form-group">
+                    <label for="deploymentName">Deployment Name:</label>
+                    <input type="text" id="deploymentName" placeholder="gpt-4">
+                </div>
+                <div class="form-group">
+                    <label for="systemPrompt">System Prompt (optional):</label>
+                    <textarea id="systemPrompt" rows="3" placeholder="You are a helpful AI assistant. Provide clear, accurate, and friendly responses."></textarea>
+                </div>
+                <div class="button-group">
+                    <button id="saveSettings" class="btn-primary">Save Settings</button>
+                    <button id="closeSettings" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div id="chatMessages" class="chat-messages">
+                <div class="welcome-message">
+                    <h2>Welcome to Azure AI Chat! 👋</h2>
+                    <p>Click the settings button to configure your Azure AI Foundry credentials, then start chatting!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <textarea 
+                id="userInput" 
+                placeholder="Type your message here..." 
+                rows="1"
+                disabled
+            ></textarea>
+            <button id="sendBtn" class="send-btn" disabled>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10L18 2L10 18L8 11L2 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

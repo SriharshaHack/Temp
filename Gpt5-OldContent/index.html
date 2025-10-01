@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Azure GPT Mini Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Azure GPT Mini Chat</h1>
+    <button id="toggle-settings" aria-expanded="false" title="Show/Hide settings">⚙️</button>
+  </header>
+
+  <section id="settings" hidden>
+    <h2>Connection Settings</h2>
+    <form id="settings-form">
+      <div class="field">
+        <label for="apiKey">API Key</label>
+        <input id="apiKey" type="password" autocomplete="off" placeholder="Enter Azure AI Foundry API Key" required />
+        <label class="checkbox"><input type="checkbox" id="showKey" /> Show key</label>
+        <label class="checkbox"><input type="checkbox" id="rememberKey" /> Remember key (localStorage)</label>
+      </div>
+      <div class="field two-col">
+        <div>
+          <label for="endpoint">Endpoint URL</label>
+          <input id="endpoint" type="text" placeholder="https://YOUR-RESOURCE.openai.azure.com" required />
+        </div>
+        <div>
+          <label for="deployment">Deployment / Model ID</label>
+          <input id="deployment" type="text" placeholder="gpt-5-mini" required />
+        </div>
+      </div>
+      <div class="field two-col">
+        <div>
+          <label for="apiVersion">API Version</label>
+          <input id="apiVersion" type="text" placeholder="2024-08-01-preview" required />
+        </div>
+        <div>
+          <label for="temperature">Temperature</label>
+          <input id="temperature" type="number" min="0" max="2" step="0.1" value="0.7" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="checkbox"><input type="checkbox" id="useResponses" checked /> Use /responses endpoint</label>
+        <label class="checkbox"><input type="checkbox" id="storeSettings" checked /> Remember non-sensitive settings</label>
+      </div>
+      <div class="actions">
+        <button type="button" id="saveSettings">Save Settings</button>
+        <button type="button" id="clearSettings">Clear Stored</button>
+      </div>
+      <p class="note">Security: All calls happen directly from your browser. Your API key stays local, but any site JS can access it. Prefer using a limited-scope key.</p>
+    </form>
+  </section>
+
+  <main>
+    <div id="messages" aria-live="polite"></div>
+    <form id="chat-form">
+      <textarea id="user-input" rows="2" placeholder="Ask something..." required></textarea>
+      <div class="chat-actions">
+        <button type="submit" id="sendBtn">Send</button>
+        <button type="button" id="stopBtn" disabled>Stop</button>
+        <button type="button" id="clearBtn" title="Clear conversation">Clear</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <span id="status">Idle</span>
+    <span id="usage"></span>
+    <a href="https://learn.microsoft.com/azure/ai-services/" target="_blank" rel="noopener">Docs</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
